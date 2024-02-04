@@ -17,9 +17,8 @@
     <fieldset style="background-color: #8f9293;">
     <legend>{{task.title}}</legend>
     <h4>{{task.title}}</h4>
-    <p>{{task.description|truncatewords:20}}</p>
+    <p>{{task.description}}</p>
     <p>Assigned user: {{task.assigned_user}}</p>
-    <p>Is done? : {{task.is_done}}</p>
     <p>Added at : {{task.created_at}}</p>
     <form action="/change/{{task.id}}" method="post">
         {% csrf_token %}
@@ -35,9 +34,8 @@
     <fieldset>
     <legend>{{task.title}}</legend>
     <h4>{{task.title}}</h4>
-    <p>{{task.description|truncatewords:20}}</p>
+    <p>{{task.description}}</p>
     <p>Assigned user: {{task.assigned_user}}</p>
-    <p>Is done? : {{task.is_done}}</p>
     <p>Added at : {{task.created_at}}</p>
     <form action="/change/{{task.id}}" method="post">
         {% csrf_token %}
@@ -48,8 +46,31 @@
 </div>
 {% endif %}
 
-{% endif %}
+{% else %}
+{% if task.is_done %}
+<div class="task-done" >
+    <fieldset style="background-color: #8f9293;">
+    <legend>{{task.title}}</legend>
+    <h4>{{task.title}}</h4>
+    <p>{{task.description}}</p>
+    <p>Assigned user: {{task.assigned_user}}</p>
+    <p>Added at : {{task.created_at}}</p>
+    </fieldset>
+</div>
+{% else %}
 
+<div class="task">
+    <fieldset>
+    <legend>{{task.title}}</legend>
+    <h4>{{task.title}}</h4>
+    <p>{{task.description}}</p>
+    <p>Assigned user: {{task.assigned_user}}</p>
+    <p>Added at : {{task.created_at}}</p>
+    </fieldset>
+</div>
+
+{% endif %}
+{% endif %}
 {% endif %}
 
 {% if comments %}
