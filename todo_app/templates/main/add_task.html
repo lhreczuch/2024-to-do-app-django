@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<center>
+
+<form method = "post">
+<div class="add-task">
+    <fieldset>
+        <legend>Create task</legend>
+        {% csrf_token %}
+        <label>Title</label>
+        {% render_field form.title placeholder="title" class+="" %}
+        
+        <label>Description</label>
+        {% render_field form.description placeholder="description" class+="" %}
+        <label>Assigned user</label>
+        {% render_field form.assigned_user %}<br>
+        <button class="form-button" type="submit">Add Task</button>
+    </fieldset>
+</div>
+
+
+</form> 
+
+</center>
+
+{% endblock %}

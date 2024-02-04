@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+        }
+
+        #logo{
+            color: white;
+            font-size: 35px;
+            line-height: 80px;
+            padding: 0 100px;
+            font-weight: bold;
+        }
+
+        #right-bar{
+            float:right;
+        }
+
+        #right-bar span{
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+
+        #right-bar span a{
+            color: white;
+            font-size: 17px;
+            padding: 7px 13 px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+
+        #top-bar {
+            background-color: #888;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .main-field {
+            width: 48%; 
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        fieldset{
+            background-color: #d3d3d3;
+            margin: 2em 0;
+            padding: 1em 2em;
+            border: solid 1px #ccc;
+            border-radius:6px;
+            min-width:200px;
+        }
+
+        legend{
+            font-size: 1,25em;
+            padding: 0.25em;
+            color: #272727;
+        }
+
+        label{
+            display: block;
+            margin-top: 1em;
+        }
+        
+        .checks label {
+            margin-top:0;
+        }
+        label:first-of-type{
+            margin-top:0;
+        }
+
+        button{
+            padding: .5em 1em;
+            border-radius: 6px;
+            background-color: #333;
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: .8em;
+        }
+
+        @media screen and (min-width:430px) {
+            legend{
+                font-size: 1,75em;
+            }
+            fieldset{
+                width: 40%;
+                min-width: 320px;
+                margin: auto;
+            }
+            .checks label {
+                display: inline-block;
+                padding-top: .5em;
+                margin-top: 0;
+                margin-right: .5em;
+            }
+        }
+
+        input{
+            padding: .8em;
+            min-width: 100%;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="top-bar">
+    <div>
+        {% if user.is_authenticated %}
+        <a href="/"><span id="logo">To do app | Home</span></a>
+        {% else %}
+        <a href="/">><span>To do app</span></a>
+        {% endif %}
+        {% block left_menu %}
+        {% endblock %}
+    </div>
+    
+    <div id="right-bar">
+        
+        {% if user.is_authenticated %}
+        <span>You' re logged in as {{user.username}} | </span>
+        <span><a href="/logout">Logout</a></span>
+        
+        {% endif %}
+        
+    </div>
+    
+</div>
+
+{% block content %} 
+{% endblock %}
+
+</body>
+</html>

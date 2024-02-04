@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% block left_menu %}
+<a href="/add_task"><span id="logo">Add task</span></a>
+{% endblock %}
+
+
+
+{% block content %} 
+<div id="main-content">
+    <div class="main-field" style="background-color: #f0f0f0;">
+        <div>
+            <h2>My Tasks:</h2>
+        </div>
+        {% for task in tasks reversed %}
+        {% if task.assigned_user == user %}
+        <a href="/task/{{task.id}}"><div>
+            <h5>{{task.title}}</h5>
+            <p>{{task.description|truncatewords:20}}</p>
+            <p>Assigned user: {{task.assigned_user}}</p>
+            <p>Is done? : {{task.is_done}}</p>
+            <p>Added at : {{task.created_at}}</p>
+        </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="main-field" style="background-color: #e0e0e0;">
+        <div>
+            <h2>All Tasks:</h2>
+        </div>
+        {% for task in tasks reversed %}
+        <a href="/task/{{task.id}}"><div>
+        <div>
+            <h5>{{task.title}}</h5>
+            <p>{{task.description|truncatewords:20}}</p>
+            <p>Assigned user: {{task.assigned_user}}</p>
+            <p>Is done? : {{task.is_done}}</p>
+            <p>Added at : {{task.created_at}}</p>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

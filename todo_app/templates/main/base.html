@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       
+       *{
+        padding:0;
+        margin:0;
+        text-decoration: none !important;
+        list-style-type: style none !important;
+        box-sizing: border-box;
+       }
+
+       body{
+        background-color: #b7c4c8;
+       }
+      
+    /* NAVBAR CSS BELOW: */
+
+       label.logo{
+        color: white;
+        font-size: 35px;
+        line-height: 80px;
+        padding: 0 20px;
+        font-weight: bold;
+       }
+      
+
+       a.active,a:hover{
+        background: #1b9bff;
+        transition: .5s;
+       }
+
+       nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+            
+            
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            
+        }
+
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+            }
+
+
+       /* MAIN PAGE CSS BELOW: */
+
+      fieldset{
+            display: inline-block;
+            vertical-align: top;
+            background-color: #d3d3d3;
+            margin: 2em 2em;
+            padding: 1em 1em;
+            border: solid 1px #ccc;
+            border-radius:6px;
+            width:600px;
+            min-width:200px;
+            /* padding: 8px 8px; */
+            
+        }
+
+        .main-field-task-legend{
+            font-size: 30px;
+        }
+
+        fieldset a{
+            text-decoration: none; 
+            color:inherit;
+        }
+
+        legend{
+            font-size: 1,25em;
+            padding: 0.25em;
+            color: #272727;
+        }
+
+        label{
+            display: block; 
+            margin-top: 1em;
+        }
+
+        .task fieldset{
+            border: solid #272727;
+            border-radius: 20px;
+            display: block; 
+            background-color: #327a9e;
+        }
+
+        .task-done fieldset{
+            border: solid #272727;
+            border-radius: 20px;
+            display: block; 
+            background-color: #8f9293;
+        }
+
+        .task-button{
+            background-color:rgb(70, 161, 187);
+            vertical-align: top;
+            margin-top: 2em;
+            padding: .5em 1em;
+            border-radius: 6px;
+        }
+
+        .task-button-inactive{
+            background-color:rgb(105, 108, 108);
+            color:#272727;
+            vertical-align: top;
+            margin-top: 2em;
+            padding: .5em 1em;
+            border-radius: 6px;
+        }
+
+        fieldset fieldset legend{
+
+            font-size: 40px;
+        }
+
+        .task-site fieldset legend{
+            font-size: 40px;
+        }
+    
+
+        /* TASK.HTML AND ADD-TASK.HTML CSS BELOW */
+        .form-button{
+            display: block; 
+            margin-top: 2em;
+            padding: .5em 1em;
+            border-radius: 6px;
+            background-color: #333;
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: .8em;
+        }
+
+        .task-site fieldset{
+            background-color: #327a9e;
+        }
+
+        .task-site .comments{
+            background-color: hsl(214, 22%, 56%);
+        }
+
+        
+        input{
+            padding: .8em;
+            min-width: 100%;
+            
+        }
+
+        .task-site fieldset{
+            border: solid #272727;
+            border-radius: 25px;
+            display: block;
+            width:600px;
+        } 
+
+        /* STYLES FOR PHONES */
+        /* STYLES FOR PHONES */
+        /* STYLES FOR PHONES */
+        /* STYLES FOR PHONES BELOW*/
+
+        @media screen and (max-width: 600px) {
+            /* NAVBAR PHONE STYLE BELOW */
+            nav{
+                width:100%;
+            }
+            nav a {
+                float: none;
+                display: block;
+                text-align: left;
+                
+                box-sizing: border-box; 
+            }
+            .login fieldset{
+                max-width: 80%;
+            }
+            .register fieldset{
+                max-width:80%;
+            }
+            #main-field fieldset{
+                max-width:80%;
+            }
+            .task-site fieldset{
+                max-width:80%;
+            }
+            .add-task fieldset{
+                max-width: 80%;
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        {% if user.is_authenticated %}
+        
+        {% else %}
+        <label class="logo">To do app</label>
+        {% endif %}
+        
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="/">&#x21bb;</a></li>
+            <li><a href="/add_task">+</a></li>
+            <li><a href="#" class="disabled">Hello, {{user.username}}</a> </li>
+            
+            <li><a href="/logout" >Logout</a></li>
+
+            {% endif %}
+        </ul>
+        
+    </nav>
+<div>
+{% block content %} 
+{% endblock %}
+</div>
+
+</body>
+</html>
+
+
+
+
+

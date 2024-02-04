@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks %}
+
+
+
+{% block content %} 
+
+<form method = "post">
+<div class="login">
+    <fieldset>
+        <legend>Log in here !</legend>
+        {% csrf_token %}
+       
+        <label>Login</label>
+        {% render_field form.username placeholder="name" class+="" %}
+        
+        <label>Password</label>
+        {% render_field form.password placeholder="password" class+="" %}
+        <p> Don't have an account ? Create <a href="/register">here!</a></p>
+        <button class="form-button" type="submit">Login</button>
+    </fieldset>
+</div>  
+</form>
+
+{% endblock %}
