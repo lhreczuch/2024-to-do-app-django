@@ -66,3 +66,22 @@ def change(request,pk):
         else:
             Task.objects.filter(id=task_id).update(is_done=True)
         return redirect(f'/task/{pk}')
+    
+
+def delete(request):
+    if request.method == "POST":
+        task_id = request.POST['task_id']
+        Task.objects.filter(id=task_id).first().delete()
+        return redirect('/')
+    
+def edit(request,pk):
+    task = Task.objects.get(id=pk)
+    if request.method == "POST":
+        form = TaskForm(request.POST,instance=task)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'main/edit.html',{'form':form})
+    

@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<center>
+
+<form method = "post" action="">
+<div class="add-task">
+    <fieldset>
+        <legend>Edit Task</legend>
+        {% csrf_token %}
+        <label>Title</label>
+        {% render_field form.title placeholder="{{task.title}}" class+="" %}
+        
+        <label>Description</label>
+        {% render_field form.description placeholder="{{task.description}}" class+="" %}
+        <label>Assigned user</label>
+        {% render_field form.assigned_user placeholder="{{task.assigned_user}}" %}<br>
+        <button class="form-button" type="submit">Save Changes</button>
+    </fieldset>
+</div>
+
+
+</form> 
+
+</center>
+
+{% endblock %}
