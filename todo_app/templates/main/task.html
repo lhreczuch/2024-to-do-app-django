@@ -9,82 +9,103 @@
 <div class="task-site">
 {% if task %}
 
-{% if user == task.assigned_user %}
+    {% if user == task.assigned_user %}
 
-{% if task.is_done %}
+        {% if task.is_done %}
 
-<div class="task-done" >
-    <fieldset style="background-color: #8f9293;">
-    <legend>{{task.title}}</legend>
-    <h4>{{task.title}}</h4>
-    <p>{{task.description}}</p>
-    <p>Assigned user: {{task.assigned_user}}</p>
-    <p>Added at : {{task.created_at}}</p>
-    <form action="/change/{{task.id}}" method="post">
-        {% csrf_token %}
-        <input type ="hidden" name="task_id" value="{{task.id}}">
-        <button type="submit" class="task-button-inactive" name="task-button" >Wykonane</button>
-    </form>
-    </fieldset>
-</div>
+            <div class="task-done" >
+                <fieldset>
+                <legend>{{task.title}}</legend>
+                <h4>{{task.title}}</h4>
+                <p>{{task.description}}</p>
+                <p>Assigned user: {{task.assigned_user}}</p>
+                <p>Added at : {{task.created_at}}</p>
+                <form style="margin-right: 40px;" action="/change/{{task.id}}" method="post">
+                    {% csrf_token %}
+                    <input type ="hidden" name="task_id" value="{{task.id}}">
+                    <button type="submit" class="task-button-inactive" name="task-button" >Wykonane</button>
+                </form>
+                <form action="/delete" method="post">
+                    {% csrf_token %}
+                    <input type ="hidden" name="task_id" value="{{task.id}}">
+                    <button type="submit" class="delete-button" name="delete" >Usuń</button>
+                </form>
+                <form action="/edit/{{task.id}}">
+                    {% csrf_token %}
+                    <input type ="hidden" name="task_id" value="{{task.id}}">
+                    <button type="submit" class="edit-button" name="delete" >Edytuj</button>
+                </form>
+                </fieldset>
+            </div>
 
-{% else %}
+        {% else %}
 
-<div class="task">
-    <fieldset>
-    <legend>{{task.title}}</legend>
-    <h4>{{task.title}}</h4>
-    <p>{{task.description}}</p>
-    <p>Assigned user: {{task.assigned_user}}</p>
-    <p>Added at : {{task.created_at}}</p>
-    <form action="/change/{{task.id}}" method="post">
-        {% csrf_token %}
-        <input type ="hidden" name="task_id" value="{{task.id}}">
-        <button type="submit" class="task-button" name="task-button">Wykonaj</button>
-    </form>
-    </fieldset>
-</div>
-{% endif %}
+            <div class="task">
+                <fieldset>
+                <legend>{{task.title}}</legend>
+                <h4>{{task.title}}</h4>
+                <p>{{task.description}}</p>
+                <p>Assigned user: {{task.assigned_user}}</p>
+                <p>Added at : {{task.created_at}}</p>
+                <form style="margin-right: 40px;" action="/change/{{task.id}}" method="post">
+                    {% csrf_token %}
+                    <input type ="hidden" name="task_id" value="{{task.id}}">
+                    <button type="submit" class="task-button" name="task-button">Wykonaj</button>
+                </form>
+                <form action="/delete" method="post">
+                    {% csrf_token %}
+                    <input type ="hidden" name="task_id" value="{{task.id}}">
+                    <button type="submit" class="delete-button" name="delete" >Usuń</button>
+                </form>
+                <form action="/edit/{{task.id}}">
+                    {% csrf_token %}
+                    <input type ="hidden" name="task_id" value="{{task.id}}">
+                    <button type="submit" class="edit-button" name="edit" >Edytuj</button>
+                </form>
+                
+                </fieldset>
+            </div>
+        {% endif %}
 
-{% else %}
-{% if task.is_done %}
-<div class="task-done" >
-    <fieldset style="background-color: #8f9293;">
-    <legend>{{task.title}}</legend>
-    <h4>{{task.title}}</h4>
-    <p>{{task.description}}</p>
-    <p>Assigned user: {{task.assigned_user}}</p>
-    <p>Added at : {{task.created_at}}</p>
-    </fieldset>
-</div>
-{% else %}
+    {% else %}
+        {% if task.is_done %}
+            <div class="task-done" >
+                <fieldset>
+                <legend>{{task.title}}</legend>
+                <h4>{{task.title}}</h4>
+                <p>{{task.description}}</p>
+                <p>Assigned user: {{task.assigned_user}}</p>
+                <p>Added at : {{task.created_at}}</p>
+                </fieldset>
+            </div>
+        {% else %}
 
-<div class="task">
-    <fieldset>
-    <legend>{{task.title}}</legend>
-    <h4>{{task.title}}</h4>
-    <p>{{task.description}}</p>
-    <p>Assigned user: {{task.assigned_user}}</p>
-    <p>Added at : {{task.created_at}}</p>
-    </fieldset>
-</div>
+            <div class="task">
+                <fieldset>
+                <legend>{{task.title}}</legend>
+                <h4>{{task.title}}</h4>
+                <p>{{task.description}}</p>
+                <p>Assigned user: {{task.assigned_user}}</p>
+                <p>Added at : {{task.created_at}}</p>
+                </fieldset>
+            </div>
 
-{% endif %}
-{% endif %}
+        {% endif %}
+    {% endif %}
 {% endif %}
 
 {% if comments %}
-<fieldset class="comments">
-<legend>Comments</legend>
-{% for comment in comments reversed %}
-<div class="task">
-    <h4>{{comment.author}}</h4>
-    <h5>{{comment.title}}</h5>
-    <p>{{comment.value|truncatewords:20}}</p>
-    <p>{{comment.created_at}}</p>
-</div>
-{%endfor%}
-</fieldset>
+    <fieldset class="comments">
+    <legend>Comments</legend>
+    {% for comment in comments reversed %}
+        <div class="task">
+            <h4>{{comment.author}}</h4>
+            <h5>{{comment.title}}</h5>
+            <p>{{comment.value|truncatewords:20}}</p>
+            <p>{{comment.created_at}}</p>
+        </div>
+    {%endfor%}
+    </fieldset>
 {% endif %}
 
 
