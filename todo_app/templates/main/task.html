@@ -16,10 +16,10 @@
             <div class="task-done" >
                 <fieldset>
                 <legend>{{task.title}}</legend>
-                <h4>{{task.title}}</h4>
-                <p>{{task.description}}</p>
-                <p>Assigned user: {{task.assigned_user}}</p>
-                <p>Added at : {{task.created_at}}</p>
+                
+                <p><b>Description:</b> {{task.description}}</p>
+                <p><b>Assigned user:</b> {{task.assigned_user}}</p>
+                <p><b>Added at :</b> {{task.created_at}}</p>
                 <form style="margin-right: 40px;" action="/change/{{task.id}}" method="post">
                     {% csrf_token %}
                     <input type ="hidden" name="task_id" value="{{task.id}}">
@@ -43,10 +43,10 @@
             <div class="task">
                 <fieldset>
                 <legend>{{task.title}}</legend>
-                <h4>{{task.title}}</h4>
-                <p>{{task.description}}</p>
-                <p>Assigned user: {{task.assigned_user}}</p>
-                <p>Added at : {{task.created_at}}</p>
+               
+                <p><b>Description: </b>{{task.description}}</p>
+                <p><b>Assigned user:</b> {{task.assigned_user}}</p>
+                <p><b>Added at :</b> {{task.created_at}}</p>
                 <form style="margin-right: 40px;" action="/change/{{task.id}}" method="post">
                     {% csrf_token %}
                     <input type ="hidden" name="task_id" value="{{task.id}}">
@@ -72,10 +72,10 @@
             <div class="task-done" >
                 <fieldset>
                 <legend>{{task.title}}</legend>
-                <h4>{{task.title}}</h4>
-                <p>{{task.description}}</p>
-                <p>Assigned user: {{task.assigned_user}}</p>
-                <p>Added at : {{task.created_at}}</p>
+                
+                <p><b>Description:</b> {{task.description}}</p>
+                <p><b>Assigned user:</b> {{task.assigned_user}}</p>
+                <p><b>Added at :</b> {{task.created_at}}</p>
                 </fieldset>
             </div>
         {% else %}
@@ -83,10 +83,10 @@
             <div class="task">
                 <fieldset>
                 <legend>{{task.title}}</legend>
-                <h4>{{task.title}}</h4>
-                <p>{{task.description}}</p>
-                <p>Assigned user: {{task.assigned_user}}</p>
-                <p>Added at : {{task.created_at}}</p>
+                
+                <p><b>Description:</b> {{task.description}}</p>
+                <p><b>Assigned user:</b> {{task.assigned_user}}</p>
+                <p><b>Added at :</b> {{task.created_at}}</p>
                 </fieldset>
             </div>
 
@@ -101,7 +101,7 @@
         <div class="task">
             <h4>{{comment.author}}</h4>
             <h5>{{comment.title}}</h5>
-            <p>{{comment.value|truncatewords:20}}</p>
+            <p>{{comment.value}}</p>
             <p>{{comment.created_at}}</p>
         </div>
     {%endfor%}
