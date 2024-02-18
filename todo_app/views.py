@@ -16,7 +16,9 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth.models import User
 
 import jwt,datetime
-# Create your views here.
+
+
+
 @login_required(login_url='/login')
 def index(request):
     tasks = Task.objects.all()
@@ -117,13 +119,15 @@ def apiOverView(request):
         
     except:
         raise AuthenticationFailed('unathenticated or token expired!')
+    
     return JsonResponse("API BASE POINT. Now you are authenticated", safe=False)
 
 
 @api_view(['GET'])
 def task_list(request):
     token = request.COOKIES.get('jwt')
-
+    
+    
     if not token:
         raise AuthenticationFailed("unathenticated")
     
@@ -132,6 +136,7 @@ def task_list(request):
         
     except:
         raise AuthenticationFailed('unathenticated or token expired!')
+    
     
     task = Task.objects.all()
     serializer = TaskSerializer(task,many=True)
@@ -156,7 +161,7 @@ def task_details(request,pk):
     return Response(serializer.data)
 
 
-# to do: server has to recognize which user sends request to create task and has to assign him to 'author field'
+
 
 @api_view(['POST'])
 def create_task(request):
@@ -189,12 +194,20 @@ def update_task(request,pk):
         
     except:
         raise AuthenticationFailed('unathenticated or token expired!')
+    
     task = Task.objects.filter(id=pk).first()
-    serializer = TaskSerializer(instance=task,data=request.data)
+    user = User.objects.get(id = payload['id'])
 
-    if serializer.is_valid():
+    if task.assigned_user == user or user.is_superuser:
+        
+        serializer = TaskSerializer(instance=task,data=request.data)
+
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data)
+    
+    else:
+        raise AuthenticationFailed('You are not permitted to update this task')
 
 
 @api_view(['DELETE'])
@@ -209,10 +222,16 @@ def delete_task(request,pk):
         
     except:
         raise AuthenticationFailed('unathenticated or token expired!')
-    task = Task.objects.get(id=pk)
     
-    task.delete()
-    return Response("deleted item !")
+    user = User.objects.get(id = payload['id'])
+    task = Task.objects.get(id=pk)
+
+    if task.assigned_user == user or user.is_superuser:
+        task.delete()
+        return Response("deleted item !")
+    
+    else:
+        raise AuthenticationFailed('You are not permitted to update this task')
 
 
 @api_view(['POST'])
