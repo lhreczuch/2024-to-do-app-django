@@ -13,7 +13,7 @@ ________________________________________
   Project has task, comment and user objects. Each task status can be changed to done or not done by it's assigned user.
   Only assigned user can change status of task or edit it.
   
-  Besides graphic interface there iw built in API with JWT token authorization. Token is generated when user logs in and has a 60 minutes of validity period.
+  Besides graphic interface there is built in API with JWT token authorization through cookie. Token is generated when user logs in and has a 60 minutes of validity period.
 
 ## 2. HOW TO USE
    
