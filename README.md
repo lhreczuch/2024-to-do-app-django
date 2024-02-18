@@ -89,8 +89,13 @@ ________________________________________
   ## 3. WHAT I LEARNED 
 
         Project is actually my first ever touch with DJANGO, creating API and JWT tokens. 
-        I learned that token can store id of user that authenticates with api, and thanks to that we can specify that some users can do specific operations and some don't
+
+        I found out about how projects in django are built. I used django forms, serializers and i understood how to connect my html templates with django backend.
+        What was one of the most important things - I learned how data can be displayed dynamically on user side.
+        
+        When I was creating API, I learned that token can store id of user that authenticates with api, and thanks to that we can specify that some users can do specific  operations and some don't
         For example in my project deleting and editing task should be only possible by user that is assigned to it. It is possible thanks to payload in JWT token.
+
 
         I had an opportunity to use Postman for the first time to test my API's and i think its a very pleasant to use tool.
 
