@@ -1,7 +1,7 @@
 1. DESCRIPTION
 2. HOWT TO USE
-3. USED TECHNOLOGIES/LIBRARIES AND IT'S VERSIONS[NOT FINISHED]
-4. WHAT I LEARNED[NOT FINISHED]
+3. USED TECHNOLOGIES/LIBRARIES AND IT'S VERSIONS
+4. WHAT I LEARNED
 ________________________________________
 
 ## 1. DESCRIPTION
@@ -73,15 +73,30 @@ ________________________________________
          method: post
          required parameters: {NONE}
 
-  ## 3. USED TECHNOLOGIES/LIBRARIES AND IT'S VERSIONS[unfinished]
+  ## 3. USED TECHNOLOGIES/LIBRARIES AND IT'S VERSIONS
 
 
         Python 3.11.4
         Django version 4.2.4
         HTML, CSS
         django_rest_framework 3.14.0
+        jwt
+        datetime
+        django-crispy-forms
+        django-cors-headers
+        django-widget-tweaks
       
-  ## 3. WHAT I LEARNED [unfinished]
+  ## 3. WHAT I LEARNED 
+
+        Project is actually my first ever touch with DJANGO, creating API and JWT tokens. 
+        I learned that token can store id of user that authenticates with api, and thanks to that we can specify that some users can do specific operations and some don't
+        For example in my project deleting and editing task should be only possible by user that is assigned to it. It is possible thanks to payload in JWT token.
+
+        I had an opportunity to use Postman for the first time to test my API's and i think its a very pleasant to use tool.
+
+        For the first time in a long time i worked with html/css and I remembered how to style my html a little, and adjust it for smaller devices like phones etc.
+
+        
          
   
     
