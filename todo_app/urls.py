@@ -9,4 +9,5 @@ urlpatterns = [
     path('change/<str:pk>',views.change,name='change'),
     path('delete',views.delete,name='delete'),
     path('edit/<str:pk>',views.edit,name='edit')
+    
 ]
