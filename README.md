@@ -18,8 +18,8 @@ ________________________________________
 ## 2. HOW TO USE
    
    2.1 WEB PAGE
-   
-     - You can run server locally from \to_do\todo_project directory using command 'python manage.py runserver localhost:[free port]
+     - First, install all libraries using 'pip install -r requirements.txt' in terminal from \to_do\todo_project directory
+     - You can run server locally from \to_do\todo_project directory using command 'python manage.py runserver
        
    2.2 API DOCUMENTATION
    
