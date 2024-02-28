@@ -18,8 +18,9 @@ ________________________________________
 ## 2. HOW TO USE
    
    2.1 WEB PAGE
-     - First, install all libraries using 'pip install -r requirements.txt' in terminal from \to_do\todo_project directory
-     - You can run server locally from \to_do\todo_project directory using command 'python manage.py runserver
+     - You should have python 3.11.4 and pip 23.1.2 installed on your device
+     - Then install all libraries using 'pip install -r requirements.txt' in terminal from main directory
+     - You can run server locally from main directory using command 'python manage.py runserver
        
    2.2 API DOCUMENTATION
    
